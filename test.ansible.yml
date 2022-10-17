@@ -5,7 +5,7 @@
   tasks:
   
     - name: Display JSON file content
-      shell: cat test_file.json
+      shell: cat machine_information.json
       register: result
 
     - name: Save the JSON data to a variable as a Fact
@@ -16,7 +16,7 @@
       set_fact:
         machine_name: "{{ json_data | json_query(jmesquey) }}"
       vars:
-        jmesquey: '*.servers[*].name'
+        jmesquey: '[*].Name'
       
     - name: Print the machine name
       debug:
