@@ -1,0 +1,23 @@
+---
+# Playbook that readsthe data of a JSON file
+- name: Read JSON file
+- hosts: localhost
+  tasks:
+    - name: Display JSON file content
+      shell: cat machine_information.json
+      register: result
+
+      - name: Save the JSON data to a variable as a Fact
+        set_fact:
+          json_data: "{{ result.stdout | from_json }}"
+
+      - name: Machine name 
+        set fact:
+          machine_name: "{{ json_data | json_query(jmesquey) }}"
+        vars:
+          jmesquey: "*.name"
+      
+      - name: Prinet the machine name
+        debug:
+          msg: "{{ machine_name }}"
+        when: machine_name is defined
