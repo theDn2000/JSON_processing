@@ -1,7 +1,7 @@
 ---
 # Playbook that readsthe data of a JSON file
 - name: Read JSON file
-- hosts: localhost
+  hosts: localhost
   tasks:
   
     - name: Display JSON file content
