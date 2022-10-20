@@ -1,0 +1,24 @@
+---
+# Playbook that reads a json file and converts it to yaml
+- name: Convert json to yaml
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    json_file: machine_information.json
+    yaml_file: machine_information_output.yml
+  tasks:
+    - name: Read json file
+      set_fact:
+        json_data: "{{ lookup('file', json_file) | from_json }}"
+    - name: Convert json to yaml
+      set_fact:
+        yaml_data: "{{ json_data | to_nice_yaml }}"
+    - name: Write yaml file
+      copy:
+        content: "{{ yaml_data }}"
+        dest: "{{ yaml_file }}"
+        mode: 0644
+
+
+

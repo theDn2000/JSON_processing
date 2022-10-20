@@ -1,5 +1,5 @@
 ---
-# Playbook that readsthe data of a JSON file
+# Playbook that reads the data of a JSON file
 - name: Read JSON file
   hosts: localhost
   tasks:
@@ -22,3 +22,5 @@
       debug:
         msg: "{{ machine_name }}"
       when: machine_name is defined
+
+# End playbook
