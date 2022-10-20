@@ -13,7 +13,7 @@
         json_data: "{{ lookup('file', json_file) | from_json }}"
     - name: Convert json to yaml
       set_fact:
-        yaml_data: "{{ json_data | to_nice_yaml }}"
+        yaml_data: "{{ json_data | to_yaml }}"
     - name: Write yaml file
       copy:
         content: "{{ yaml_data }}"
