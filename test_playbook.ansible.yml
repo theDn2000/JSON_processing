@@ -22,3 +22,5 @@
       debug:
         msg: "{{ machine_name }}"
       when: machine_name is defined
+
+# End playbook
