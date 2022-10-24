@@ -1,0 +1,29 @@
+---
+- name: Import machines into SNOW CMDB 
+  hosts: localhost 
+  gather_facts: false
+  connection: local 
+  vars:
+    # CMDB table name 
+    cmdb_table: cmdb_ci_computer_server 
+    # Environment to place the data:
+    env: production 
+    # Category for device:
+    cat: Hardware 
+
+  tasks:
+  - name: Include the file that will be imported into SNOW
+    include_vars: 
+      file: machine_information_output.yml
+
+  - name: Read all the existing CMDB entries and save them to a variable
+    servicenow.itsm.configuration_item_info:
+      sys_class_name: "{{ cmdb_table }}"
+      register: all_config_items
+
+  - name: Loop to import devices. This task calls a sub task for processing 
+    include_tasks: XXXXXXXXX
+    register: update_hw
+    loop: "{{ inventory_migration }}"
+    loop_control:
+      loop_var: inv_entries
