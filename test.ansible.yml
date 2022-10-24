@@ -5,7 +5,7 @@
   tasks:
   
     - name: Display JSON file content
-      shell: cat machine_information.json
+      shell: cat json_test_files/machine_information.json
       register: result
 
     - name: Save the JSON data to a variable as a Fact

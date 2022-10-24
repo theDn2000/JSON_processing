@@ -5,7 +5,7 @@
   connection: local
   gather_facts: no
   vars:
-    json_file: machine_information.json
+    json_file: json_test_files/atom_machines.json
     yaml_file: machine_information_output.yml
   tasks:
     - name: Read json file
